@@ -7,6 +7,8 @@ import com.hjonas.data.services.carattributes.model.CarAttributes
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
+import java.io.IOException
 
 class CarAttributesPresenter(val view: CarAttributesContract.View) : CarAttributesContract.Presenter {
 
@@ -30,6 +32,10 @@ class CarAttributesPresenter(val view: CarAttributesContract.View) : CarAttribut
     }
 
     private fun handleFetchAttributesFail(throwable: Throwable) {
-        view.connectionProblemError()
+        when (throwable) {
+            is IOException -> view.connectionProblemError()
+            is HttpException -> view.incorrectResponseError(throwable.code())
+            else -> view.incorrectResponseError(CarAttributesContract.CODE_UNKNOWN_ERROR)
+        }
     }
 }
