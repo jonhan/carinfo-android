@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         ApiManager.carInfoService().fetchCarAttributes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ handleAttributesFetched(it) }, { Toast.makeText(this, "FAIL!", Toast.LENGTH_LONG).show() })
+                .subscribe({ handleAttributesFetched(it) }, { Toast.makeText(this, "FAIL!: ${it.cause}", Toast.LENGTH_LONG).show() })
     }
 
     private fun handleAttributesFetched(attributes: CarAttributes) {
