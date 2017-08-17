@@ -10,11 +10,12 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import java.io.IOException
 
-class CarAttributesPresenter(val view: CarAttributesContract.View) : CarAttributesContract.Presenter {
+class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: String? = null) : CarAttributesContract.Presenter {
 
     private var disposable: Disposable? = null
 
     override fun subscribe() {
+        //TODO: Use the vin-field to fetch attributes for a specific car once an API supporting this is available.
         disposable = ApiManager.carInfoService().fetchCarAttributes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

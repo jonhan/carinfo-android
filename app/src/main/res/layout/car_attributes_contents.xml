@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_car_attributes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="@dimen/attribute_row_side_margin"
+            android:text="Car information"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            card_view:cardElevation="8dp"
+            card_view:contentPadding="@dimen/attribute_list_pagging">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/AttributeRowText"
+                    tools:text="Brand" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
+                    tools:text="Ford" />
+
+                <TextView
+                    style="@style/AttributeRowText"
+                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
+                    android:textAllCaps="true"
+                    tools:text="Reg number: RAX123" />
+
+                <TextView
+                    style="@style/AttributeRowText"
+                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
+                    tools:text="Year: 2009" />
+
+                <TextView
+                    style="@style/AttributeRowText"
+                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
+                    tools:text="Gearbox: Automatic" />
+
+                <TextView
+                    style="@style/AttributeRowText"
+                    tools:text="Fuel types: Gasoline" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    <!-- Add more properties here -->
+</ScrollView>
