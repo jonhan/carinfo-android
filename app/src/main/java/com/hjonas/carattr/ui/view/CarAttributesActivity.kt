@@ -19,13 +19,12 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
         private const val INTENT_EXTRA_VIN = "intent.extra.vin"
 
         /**
-         * Create an [Intent] that can be used to start this activity with a vin-parameter for the car to show attributes for
+         * Creates and returns an [Intent] that can be used to start this activity with a vin-parameter for the car to show attributes for
          */
-        fun newIntent(context: Context, vin: String) {
-            val intent = Intent(context, CarAttributesActivity::class.java).apply {
-                putExtra(INTENT_EXTRA_VIN, vin)
-            }
-        }
+        fun newIntent(context: Context, vin: String) =
+                Intent(context, CarAttributesActivity::class.java).apply {
+                    putExtra(INTENT_EXTRA_VIN, vin)
+                }
     }
 
     override fun showVehicleInformation(attributes: Attributes) {
@@ -68,11 +67,11 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
         loadingProgressBar.visibility = View.GONE
     }
 
-    override fun connectionProblemError() {
+    override fun showConnectionProblemError() {
         Toast.makeText(this, "Connection progrem", Toast.LENGTH_LONG).show()
     }
 
-    override fun incorrectResponseError(code: Int) {
+    override fun showIncorrectResponseError(code: Int) {
         Toast.makeText(this, "Error response: $code", Toast.LENGTH_LONG).show()
     }
 }

@@ -34,9 +34,9 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
 
     private fun handleFetchAttributesFail(throwable: Throwable) {
         when (throwable) {
-            is IOException -> view.connectionProblemError()
-            is HttpException -> view.incorrectResponseError(throwable.code())
-            else -> view.incorrectResponseError(CarAttributesContract.CODE_UNKNOWN_ERROR)
+            is IOException -> view.showConnectionProblemError()
+            is HttpException -> view.showIncorrectResponseError(throwable.code())
+            else -> view.showIncorrectResponseError(CarAttributesContract.CODE_UNKNOWN_ERROR)
         }
     }
 }

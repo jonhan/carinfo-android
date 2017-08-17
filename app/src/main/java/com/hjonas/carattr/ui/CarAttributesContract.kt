@@ -12,8 +12,8 @@ interface CarAttributesContract {
     interface View {
         fun showLoading()
         fun hideLoading()
-        fun connectionProblemError()
-        fun incorrectResponseError(code: Int)
+        fun showConnectionProblemError()
+        fun showIncorrectResponseError(code: Int)
         fun showVehicleInformation(attributes: Attributes)
         fun showFuelInformation(fuel: CarAttributes.Fuel)
         fun showEmissionsInformation(emission: CarAttributes.Emission)
