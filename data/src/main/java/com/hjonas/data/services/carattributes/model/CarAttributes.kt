@@ -14,26 +14,18 @@ data class CarAttributes(val regno: String
 // Data classes for emissions information
 data class Emission(val gasoline: FuelEmission?
                     , val diesel: FuelEmission?) {
-
-    data class FuelEmission(val co2: CO2) {
-
-        data class CO2(val urban: Double?
-                       , val mixed: Double?
-                       , val rural: Double?)
-    }
+    data class FuelEmission(val co2: DrivingValues)
 }
 
 // Data classes for fuel information
 data class Fuel(val gasoline: FuelType?
                 , val diesel: FuelType?) {
-
-    data class FuelType(@SerializedName("average_consumption") val averageConsumption: FuelConsumption) {
-
-        data class FuelConsumption(val urban: Double?
-                                   , val mixed: Double?
-                                   , val rural: Double?)
-    }
+    data class FuelType(@SerializedName("average_consumption") val averageConsumption: DrivingValues)
 }
+
+data class DrivingValues(val urban: Double?
+                         , val mixed: Double?
+                         , val rural: Double?)
 
 object Brands {
     const val Volvo = "volvo"
@@ -51,3 +43,5 @@ object FuelTypes {
     const val Gasoline = "gasoline"
     const val Diesel = "diesel"
 }
+
+fun DrivingValues.hasValues() = (urban != null || mixed != null || rural != null)

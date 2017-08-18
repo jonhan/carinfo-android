@@ -4,15 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
+import com.hjonas.carattr.utils.setVisible
 import com.hjonas.data.services.carattributes.model.CarAttributes
 import com.hjonas.data.services.carattributes.model.Emission
 import com.hjonas.data.services.carattributes.model.Fuel
 import kotlinx.android.synthetic.main.activity_car_attributes.*
+import kotlinx.android.synthetic.main.attribute_section_fuel.*
 import kotlinx.android.synthetic.main.car_attributes_contents.*
 
 class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
@@ -63,11 +66,31 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     override fun showFuelInformation(fuel: Fuel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        fuel.gasoline?.let { createFuelInformationView(getString(R.string.fuel_type_gasoline), it) }
+        fuel.diesel?.let { createFuelInformationView(getString(R.string.fuel_type_diesel), it) }
+    }
+
+    private fun createFuelInformationView(fuelTypeName: String, fuelType: Fuel.FuelType) {
+        LayoutInflater.from(this).inflate(R.layout.attribute_section_fuel, carAttributesContainerLayout)
+        fuelSectionTitleTv.text = "Fuel consumption, $fuelTypeName"
+        fuelType.averageConsumption.mixed?.let {
+            drivingConditionMixedLabel.setVisible(true)
+            drivingConditionMixedTv.setVisible(true)
+            drivingConditionMixedTv.text = formatFuelConsumptionValue(it)
+        }
+        fuelType.averageConsumption.rural?.let {
+            drivingConditionRuralLabel.setVisible(true)
+            drivingConditionRuralTv.setVisible(true)
+            drivingConditionRuralTv.text = formatFuelConsumptionValue(it)
+        }
+        fuelType.averageConsumption.urban?.let {
+            drivingConditionUrbanLabel.setVisible(true)
+            drivingConditionUrbanTv.setVisible(true)
+            drivingConditionUrbanTv.text = formatFuelConsumptionValue(it)
+        }
     }
 
     override fun showEmissionsInformation(emission: Emission) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showConnectionProblemError() {
@@ -76,5 +99,13 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
     override fun showIncorrectResponseError(code: Int) {
         Toast.makeText(this, "Error response: $code", Toast.LENGTH_LONG).show()
+    }
+
+    private fun formatFuelConsumptionValue(value: Double): String {
+        return value.toString()
+    }
+
+    private fun formatFuelEmissionValue(value: Double): String {
+        return value.toString()
     }
 }

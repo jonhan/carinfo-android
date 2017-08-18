@@ -4,4 +4,9 @@
     <string name="attribute_label_reg_nbr">Registration number</string>
     <string name="attribute_label_fuel_type">Fuel type(s)</string>
     <string name="attribute_label_gearbox_type">Gearbox type</string>
+    <string name="driving_condition_mixed">Mixed driving</string>
+    <string name="driving_condition_rural">Rural driving</string>
+    <string name="driving_condition_urban">Urban driving</string>
+    <string name="fuel_type_gasoline">Gasoline</string>
+    <string name="fuel_type_diesel">Diesel</string>
 </resources>
