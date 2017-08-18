@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="@dimen/attribute_row_side_margin"
-            android:text="Car information"
+            android:layout_marginTop="4dp"
+            android:text="@string/details_car_header"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
 
@@ -24,8 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            card_view:cardElevation="8dp"
-            card_view:contentPadding="@dimen/attribute_list_pagging">
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:contentPadding="@dimen/attribute_list_padding">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -33,34 +35,43 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/AttributeRowText"
-                    tools:text="Brand" />
-
-                <TextView
+                    style="@style/AttributeRowLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
-                    tools:text="Ford" />
+                    android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
+                    tools:text="Ford (2009)" />
 
                 <TextView
-                    style="@style/AttributeRowText"
-                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
+                    style="@style/AttributeRowLabel"
+                    android:text="@string/attribute_label_reg_nbr" />
+
+                <TextView
+                    android:id="@+id/carAttributeRegNbrTv"
+                    style="@style/AttributeRowValue"
+                    android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
                     android:textAllCaps="true"
-                    tools:text="Reg number: RAX123" />
+                    tools:text="RAX123" />
 
                 <TextView
-                    style="@style/AttributeRowText"
-                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
-                    tools:text="Year: 2009" />
+                    android:id="@+id/carAttributeGearboxLabel"
+                    style="@style/AttributeRowLabel"
+                    android:text="@string/attribute_label_gearbox_type" />
 
                 <TextView
-                    style="@style/AttributeRowText"
-                    android:layout_marginBottom="@dimen/attribute_row_side_margin"
-                    tools:text="Gearbox: Automatic" />
+                    android:id="@+id/carAttributeGearboxTv"
+                    style="@style/AttributeRowValue"
+                    android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
+                    tools:text="Automatic" />
 
                 <TextView
-                    style="@style/AttributeRowText"
-                    tools:text="Fuel types: Gasoline" />
+                    android:id="@+id/carAttributeFueltypeLabel"
+                    style="@style/AttributeRowLabel"
+                    android:text="@string/attribute_label_fuel_type" />
+
+                <TextView
+                    android:id="@+id/carAttributeFuelTypeTv"
+                    style="@style/AttributeRowValue"
+                    tools:text="Gasoline" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

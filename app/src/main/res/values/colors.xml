@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="attributes_list_background">#cecece</color>
+    <color name="text_light">#80180006</color>
+    <color name="text_body">#000000</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>

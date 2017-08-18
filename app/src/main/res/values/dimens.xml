@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="attribute_row_side_margin">10dp</dimen>
-    <dimen name="attribute_list_pagging">8dp</dimen>
-
+    <dimen name="attribute_row_bottom_margin">6dp</dimen>
+    <dimen name="attribute_list_padding">8dp</dimen>
 </resources>
