@@ -2,6 +2,6 @@
     <string name="app_name">Car attributes</string>
     <string name="details_car_header">Car information</string>
     <string name="attribute_label_reg_nbr">Registration number</string>
-    <string name="attribute_label_fuel_type">Fuel type</string>
+    <string name="attribute_label_fuel_type">Fuel type(s)</string>
     <string name="attribute_label_gearbox_type">Gearbox type</string>
 </resources>

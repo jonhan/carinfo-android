@@ -9,30 +9,29 @@ data class CarAttributes(val regno: String
                          , @SerializedName("gearbox_type") val gearboxType: String
                          , @SerializedName("fuel_types") val fuelTypes: List<String>
                          , val emission: Emission?
-                         , val fuel: Fuel?) {
+                         , val fuel: Fuel?)
 
-    // Data classes for emissions information
-    data class Emission(val gasoline: FuelEmission?
-                        , val diesel: FuelEmission?) {
+// Data classes for emissions information
+data class Emission(val gasoline: FuelEmission?
+                    , val diesel: FuelEmission?) {
 
-        data class FuelEmission(val co2: CO2) {
+    data class FuelEmission(val co2: CO2) {
 
-            data class CO2(val urban: Double?
-                           , val mixed: Double?
-                           , val rural: Double?)
-        }
+        data class CO2(val urban: Double?
+                       , val mixed: Double?
+                       , val rural: Double?)
     }
+}
 
-    // Data classes for fuel information
-    data class Fuel(val gasoline: FuelType?
-                    , val diesel: FuelType?) {
+// Data classes for fuel information
+data class Fuel(val gasoline: FuelType?
+                , val diesel: FuelType?) {
 
-        data class FuelType(@SerializedName("average_consumption") val averageConsumption: FuelConsumption) {
+    data class FuelType(@SerializedName("average_consumption") val averageConsumption: FuelConsumption) {
 
-            data class FuelConsumption(val urban: Double?
-                                       , val mixed: Double?
-                                       , val rural: Double?)
-        }
+        data class FuelConsumption(val urban: Double?
+                                   , val mixed: Double?
+                                   , val rural: Double?)
     }
 }
 

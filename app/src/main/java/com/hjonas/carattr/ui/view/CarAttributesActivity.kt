@@ -10,8 +10,10 @@ import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
 import com.hjonas.data.services.carattributes.model.CarAttributes
+import com.hjonas.data.services.carattributes.model.Emission
+import com.hjonas.data.services.carattributes.model.Fuel
 import kotlinx.android.synthetic.main.activity_car_attributes.*
-import java.util.jar.Attributes
+import kotlinx.android.synthetic.main.car_attributes_contents.*
 
 class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
@@ -27,18 +29,6 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
                 }
     }
 
-    override fun showVehicleInformation(attributes: Attributes) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showFuelInformation(fuel: CarAttributes.Fuel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showEmissionsInformation(emission: CarAttributes.Emission) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     lateinit var presenter: CarAttributesContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,16 +37,12 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
         val vin = intent?.getStringExtra(INTENT_EXTRA_VIN)
         presenter = CarAttributesPresenter(this, vin)
-    }
-
-    override fun onResume() {
-        super.onResume()
         presenter.subscribe()
     }
 
-    override fun onPause() {
+    override fun onDestroy() {
         presenter.unsubscribe()
-        super.onPause()
+        super.onDestroy()
     }
 
     override fun showLoading() {
@@ -65,6 +51,23 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
     override fun hideLoading() {
         loadingProgressBar.visibility = View.GONE
+    }
+
+    override fun showVehicleInformation(attributes: CarAttributes) {
+        with(attributes) {
+            carAttributeModelYearTv.text = "${brand.capitalize()} ($year)"
+            carAttributeRegNbrTv.text = regno
+            carAttributeGearboxTv.text = gearboxType.capitalize()
+            carAttributeFuelTypeTv.text = fuelTypes.map { it.capitalize() }.joinToString(separator = ", ")
+        }
+    }
+
+    override fun showFuelInformation(fuel: Fuel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showEmissionsInformation(emission: Emission) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showConnectionProblemError() {

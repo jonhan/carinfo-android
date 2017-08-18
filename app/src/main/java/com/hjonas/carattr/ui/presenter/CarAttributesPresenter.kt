@@ -1,7 +1,6 @@
 package com.hjonas.carattr.ui.presenter
 
 import com.hjonas.carattr.ui.CarAttributesContract
-import com.hjonas.carattr.utils.logMessage
 import com.hjonas.data.ApiManager
 import com.hjonas.data.services.carattributes.model.CarAttributes
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,7 +28,7 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
     }
 
     private fun handleAttributesFetched(attributes: CarAttributes) {
-        logMessage("handleAtributesFetched: $attributes")
+        view.showVehicleInformation(attributes)
     }
 
     private fun handleFetchAttributesFail(throwable: Throwable) {
