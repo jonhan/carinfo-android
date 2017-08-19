@@ -9,4 +9,6 @@
     <string name="driving_condition_urban">Urban driving</string>
     <string name="fuel_type_gasoline">Gasoline</string>
     <string name="fuel_type_diesel">Diesel</string>
+    <string name="section_title_fuel">Fuel consumption, %1$s</string>
+    <string name="section_title_emissions">Emissions, %1$s</string>
 </resources>
