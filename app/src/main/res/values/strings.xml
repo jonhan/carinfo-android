@@ -11,4 +11,6 @@
     <string name="fuel_type_diesel">Diesel</string>
     <string name="section_title_fuel">Fuel consumption, %1$s</string>
     <string name="section_title_emissions">Emissions, %1$s</string>
+    <string name="consumption_liter_per_100_km">%1$.1f l/100km</string>
+    <string name="emissions_gram_per_km">%1$.1f g/km</string>
 </resources>

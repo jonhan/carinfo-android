@@ -120,10 +120,12 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     private val formatFuelConsumptionValue: (value: Double) -> String = {
-        it.toString()
+        val scaledValue: Double = it * 1000 * 100  // Scale up to liter/100km
+        getString(R.string.consumption_liter_per_100_km, scaledValue)
     }
 
     private val formatEmissionsValue: (value: Double) -> String = {
-        it.toString()
+        val scaledValue: Double = it * 1000 * 1000 // Scale to gram/km
+        getString(R.string.emissions_gram_per_km, scaledValue)
     }
 }
