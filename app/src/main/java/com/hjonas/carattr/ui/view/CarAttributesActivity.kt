@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
@@ -18,6 +17,7 @@ import com.hjonas.data.services.carattributes.model.Fuel
 import kotlinx.android.synthetic.main.activity_car_attributes.*
 import kotlinx.android.synthetic.main.attribute_consumption_section.view.*
 import kotlinx.android.synthetic.main.car_attributes_contents.*
+import kotlinx.android.synthetic.main.error_info.*
 
 class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
@@ -38,10 +38,17 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_attributes)
-
         val vin = intent?.getStringExtra(INTENT_EXTRA_VIN)
         presenter = CarAttributesPresenter(this, vin)
+        configListeners()
         presenter.subscribe()
+    }
+
+    private fun configListeners() {
+        errorInfoRetryButton.setOnClickListener {
+            errorInfoLayout.setVisible(false)
+            presenter.fetchData()
+        }
     }
 
     override fun onDestroy() {
@@ -58,6 +65,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     override fun showVehicleInformation(attributes: CarAttributes) {
+        contentsLayout.setVisible(true)
         with(attributes) {
             carAttributeModelYearTv.text = "${brand.capitalize()} ($year)"
             carAttributeRegNbrTv.text = regno
@@ -112,11 +120,21 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     override fun showConnectionProblemError() {
-        Toast.makeText(this, "Connection progrem", Toast.LENGTH_LONG).show()
+        contentsLayout.setVisible(false)
+        errorInfoLayout.setVisible(true)
+        errorInfoIcon.setImageResource(R.drawable.ic_cloud_off)
+        errorInfoMessageTv.text = getString(R.string.error_connection_problem)
     }
 
     override fun showIncorrectResponseError(code: Int) {
-        Toast.makeText(this, "Error response: $code", Toast.LENGTH_LONG).show()
+        contentsLayout.setVisible(false)
+        errorInfoLayout.setVisible(true)
+        errorInfoIcon.setImageResource(R.drawable.ic_error)
+        errorInfoMessageTv.text = if (code == CarAttributesContract.CODE_UNKNOWN_ERROR) {
+            getString(R.string.error_unknown)
+        } else {
+            getString(R.string.error_incorrect_response, code)
+        }
     }
 
     private val formatFuelConsumptionValue: (value: Double) -> String = {

@@ -13,4 +13,9 @@
     <string name="section_title_emissions">Emissions, %1$s</string>
     <string name="consumption_liter_per_100_km">%1$.1f l/100km</string>
     <string name="emissions_gram_per_km">%1$.1f g/km</string>
+    <!-- Error messages  -->
+    <string name="error_connection_problem">There was a problem connection to the server, check your internet connection and try again.</string>
+    <string name="error_incorrect_response">The server responded with an error, code: %1$d</string>
+    <string name="error_unknown">An unknown error occurred while loading data, please try again</string>
+    <string name="error_button_retry">Retry</string>
 </resources>

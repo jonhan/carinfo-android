@@ -5,7 +5,13 @@
 
     <include
         android:id="@+id/contentsLayout"
-        layout="@layout/car_attributes_contents" />
+        layout="@layout/car_attributes_contents"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/errorInfoLayout"
+        layout="@layout/error_info"
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/loadingProgressBar"

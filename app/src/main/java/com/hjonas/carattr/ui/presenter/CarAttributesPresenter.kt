@@ -15,6 +15,14 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
     private var disposable: Disposable? = null
 
     override fun subscribe() {
+        fetchData()
+    }
+
+    override fun unsubscribe() {
+        disposable?.dispose()
+    }
+
+    override fun fetchData() {
         //TODO: Use the vin-field to fetch attributes for a specific car once an API supporting this is available.
         disposable = ApiManager.carAttributesService.fetchCarAttributes()
                 .subscribeOn(Schedulers.io())
@@ -24,9 +32,6 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
                 .subscribe({ handleAttributesFetched(it) }, { handleFetchAttributesFail(it) })
     }
 
-    override fun unsubscribe() {
-        disposable?.dispose()
-    }
 
     private fun handleAttributesFetched(attributes: CarAttributes) {
         view.showVehicleInformation(attributes)

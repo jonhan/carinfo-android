@@ -3,6 +3,7 @@
     <color name="attributes_list_background">#cecece</color>
     <color name="text_light">#80180006</color>
     <color name="text_body">#000000</color>
+    <color name="text_button">#FFFFFF</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>

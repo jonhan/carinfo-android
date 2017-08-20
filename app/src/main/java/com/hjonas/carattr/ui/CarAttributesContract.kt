@@ -23,5 +23,6 @@ interface CarAttributesContract {
     interface Presenter {
         fun subscribe()
         fun unsubscribe()
+        fun fetchData()
     }
 }
