@@ -16,7 +16,7 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
 
     override fun subscribe() {
         //TODO: Use the vin-field to fetch attributes for a specific car once an API supporting this is available.
-        disposable = ApiManager.carInfoService().fetchCarAttributes()
+        disposable = ApiManager.carAttributesService.fetchCarAttributes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view.showLoading() }

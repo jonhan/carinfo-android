@@ -12,6 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object ApiManager {
 
+    /**
+     * When set to true, all output from OkHttp network requests will be logged
+     */
     var debuggable: Boolean = false
 
     private val retrofit: Retrofit by lazy { buildRetrofit() }
@@ -35,5 +38,6 @@ object ApiManager {
         return builder.build()
     }
 
-    fun carInfoService(): CarAttributesService = retrofit.create(CarAttributesService::class.java)
+    // Public RetroFit services
+    val carAttributesService: CarAttributesService by lazy { retrofit.create(CarAttributesService::class.java) }
 }

@@ -33,7 +33,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
                 }
     }
 
-    lateinit var presenter: CarAttributesContract.Presenter
+    private lateinit var presenter: CarAttributesContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,26 +69,26 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     override fun showFuelInformation(fuel: Fuel) {
         fuel.gasoline?.let {
             val title = getString(R.string.section_title_fuel, getString(R.string.fuel_type_gasoline))
-            createConsumptionInformationView(title, it.averageConsumption, formatFuelConsumptionValue)
+            addDrivingValuesSectionView(title, it.averageConsumption, formatFuelConsumptionValue)
         }
         fuel.diesel?.let {
             val title = getString(R.string.section_title_fuel, getString(R.string.fuel_type_diesel))
-            createConsumptionInformationView(title, it.averageConsumption, formatFuelConsumptionValue)
+            addDrivingValuesSectionView(title, it.averageConsumption, formatFuelConsumptionValue)
         }
     }
 
     override fun showEmissionsInformation(emission: Emission) {
         emission.gasoline?.let {
             val title = getString(R.string.section_title_emissions, getString(R.string.fuel_type_gasoline))
-            createConsumptionInformationView(title, it.co2, formatEmissionsValue)
+            addDrivingValuesSectionView(title, it.co2, formatEmissionsValue)
         }
         emission.diesel?.let {
             val title = getString(R.string.section_title_emissions, getString(R.string.fuel_type_diesel))
-            createConsumptionInformationView(title, it.co2, formatEmissionsValue)
+            addDrivingValuesSectionView(title, it.co2, formatEmissionsValue)
         }
     }
 
-    private fun createConsumptionInformationView(sectionTitle: String, drivingValues: DrivingValues, formatDrivingValue: (Double) -> String) {
+    private fun addDrivingValuesSectionView(sectionTitle: String, drivingValues: DrivingValues, formatDrivingValue: (Double) -> String) {
         val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_consumption_section, carAttributesContainerLayout, false)
         sectionView.sectionTitleTv.text = sectionTitle
         sectionView.apply {
@@ -125,7 +125,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     private val formatEmissionsValue: (value: Double) -> String = {
-        val scaledValue: Double = it * 1000 * 1000 // Scale to gram/km
+        val scaledValue: Double = it * 1000 * 1000 // Scale up to gram/km
         getString(R.string.emissions_gram_per_km, scaledValue)
     }
 }
