@@ -9,13 +9,13 @@
         android:id="@+id/errorInfoIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="@dimen/error_info_row_margin" />
 
     <TextView
         android:id="@+id/errorInfoMessageTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/error_info_row_margin"
         android:gravity="center"
         android:padding="4sp"
         android:textColor="@color/text_body"

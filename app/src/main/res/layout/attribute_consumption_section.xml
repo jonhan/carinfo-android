@@ -8,14 +8,10 @@
 
     <TextView
         android:id="@+id/sectionTitleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/SectionHeader"
         android:layout_marginBottom="4dp"
         android:layout_marginStart="@dimen/attribute_row_side_margin"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        tools:text="Fuel consumption, Gasoline" />
+        android:layout_marginTop="4dp" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

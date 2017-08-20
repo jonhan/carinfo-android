@@ -13,14 +13,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/carDetailsHeaderTv"
+            style="@style/SectionHeader"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="@dimen/attribute_row_side_margin"
             android:layout_marginTop="4dp"
-            android:text="@string/details_car_header"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            android:text="@string/details_car_header" />
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"

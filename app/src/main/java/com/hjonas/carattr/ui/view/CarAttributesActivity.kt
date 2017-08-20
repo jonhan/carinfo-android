@@ -3,7 +3,9 @@ package com.hjonas.carattr.ui.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.DrawableRes
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.content.res.AppCompatResources
 import android.view.LayoutInflater
 import android.view.View
 import com.hjonas.carattr.R
@@ -70,6 +72,9 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     override fun showVehicleInformation(attributes: CarAttributes) {
         contentsLayout.setVisible(true)
         with(attributes) {
+            // Compound drawable must be set programmatically for vectors to work on API < 21
+            val icon = AppCompatResources.getDrawable(this@CarAttributesActivity, R.drawable.ic_car)
+            carDetailsHeaderTv.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null)
             carAttributeModelYearTv.text = "${brand.capitalize()} ($year)"
             carAttributeRegNbrTv.text = regno
             carAttributeGearboxTv.text = gearboxType.capitalize()
@@ -78,35 +83,42 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     override fun showFuelInformation(fuel: Fuel) {
+        val icon = R.drawable.ic_fuel
         fuel.gasoline?.let {
             val title = getString(R.string.section_title_fuel, getString(R.string.fuel_type_gasoline))
-            addDrivingValuesSectionView(title, it.averageConsumption, formatFuelConsumptionValue)
+            addDrivingValuesSectionView(title, icon, it.averageConsumption, formatFuelConsumptionValue)
         }
         fuel.diesel?.let {
             val title = getString(R.string.section_title_fuel, getString(R.string.fuel_type_diesel))
-            addDrivingValuesSectionView(title, it.averageConsumption, formatFuelConsumptionValue)
+            addDrivingValuesSectionView(title, icon, it.averageConsumption, formatFuelConsumptionValue)
         }
     }
 
     override fun showEmissionsInformation(emission: Emission) {
+        val icon = R.drawable.ic_emission_cloud
         emission.gasoline?.let {
             val title = getString(R.string.section_title_emissions, getString(R.string.fuel_type_gasoline))
-            addDrivingValuesSectionView(title, it.co2, formatEmissionsValue)
+            addDrivingValuesSectionView(title, icon, it.co2, formatEmissionsValue)
         }
         emission.diesel?.let {
             val title = getString(R.string.section_title_emissions, getString(R.string.fuel_type_diesel))
-            addDrivingValuesSectionView(title, it.co2, formatEmissionsValue)
+            addDrivingValuesSectionView(title, icon, it.co2, formatEmissionsValue)
         }
     }
 
-
     // This can be moved to a separate class if this class gets too big
-    private fun addDrivingValuesSectionView(sectionTitle: String, drivingValues: DrivingValues, formatDrivingValue: (Double) -> String) {
+    private fun addDrivingValuesSectionView(sectionTitle: String
+                                            , @DrawableRes sectionIcon: Int
+                                            , drivingValues: DrivingValues
+                                            , formatDrivingValue: (Double) -> String) {
         if (!drivingValues.hasValues()) return
 
         val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_consumption_section, carAttributesContainerLayout, false)
-        sectionView.sectionTitleTv.text = sectionTitle
         sectionView.apply {
+            sectionTitleTv.text = sectionTitle
+            val iconDrawable = AppCompatResources.getDrawable(this@CarAttributesActivity, sectionIcon)
+            sectionTitleTv.setCompoundDrawablesRelativeWithIntrinsicBounds(iconDrawable, null, null, null)
+
             drivingValues.mixed?.let {
                 drivingConditionMixedLabel.setVisible(true)
                 drivingConditionMixedTv.setVisible(true)
