@@ -99,6 +99,8 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
         }
     }
 
+
+    // This can be moved to a separate class if this class gets too big
     private fun addDrivingValuesSectionView(sectionTitle: String, drivingValues: DrivingValues, formatDrivingValue: (Double) -> String) {
         if (!drivingValues.hasValues()) return
 
