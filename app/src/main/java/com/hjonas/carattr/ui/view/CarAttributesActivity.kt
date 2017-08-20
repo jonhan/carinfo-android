@@ -5,12 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.content.res.AppCompatResources
 import android.view.LayoutInflater
 import android.view.View
 import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
+import com.hjonas.carattr.utils.getDrawableCompat
 import com.hjonas.carattr.utils.setVisible
 import com.hjonas.data.services.carattributes.model.*
 import kotlinx.android.synthetic.main.activity_car_attributes.*
@@ -73,7 +73,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
         contentsLayout.setVisible(true)
         with(attributes) {
             // Compound drawable must be set programmatically for vectors to work on API < 21
-            val icon = AppCompatResources.getDrawable(this@CarAttributesActivity, R.drawable.ic_car)
+            val icon = this@CarAttributesActivity.getDrawableCompat(R.drawable.ic_car)
             carDetailsHeaderTv.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null)
             carAttributeModelYearTv.text = "${brand.capitalize()} ($year)"
             carAttributeRegNbrTv.text = regno
@@ -116,7 +116,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
         val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_consumption_section, carAttributesContainerLayout, false)
         sectionView.apply {
             sectionTitleTv.text = sectionTitle
-            val iconDrawable = AppCompatResources.getDrawable(this@CarAttributesActivity, sectionIcon)
+            val iconDrawable = this@CarAttributesActivity.getDrawableCompat(sectionIcon)
             sectionTitleTv.setCompoundDrawablesRelativeWithIntrinsicBounds(iconDrawable, null, null, null)
 
             drivingValues.mixed?.let {

@@ -1,5 +1,8 @@
 package com.hjonas.carattr.utils
 
+import android.content.Context
+import android.support.annotation.DrawableRes
+import android.support.v7.content.res.AppCompatResources
 import android.util.Log
 import android.view.View
 
@@ -17,3 +20,6 @@ fun Any.logError(message: String) {
 fun View.setVisible(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }
+
+fun Context.getDrawableCompat(@DrawableRes resId: Int) =
+        AppCompatResources.getDrawable(this, resId)
