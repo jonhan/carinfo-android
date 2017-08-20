@@ -13,6 +13,7 @@ buildscript {
         okHttpVersion = "3.8.0"
         retrofitVersion = "2.3.0"
         rxJavaVersion = "2.1.2"
+        paperParcelVersion = "2.0.2"
     }
 
     repositories {
