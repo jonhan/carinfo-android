@@ -1,5 +1,6 @@
 package com.hjonas.carattr.ui.presenter
 
+import android.os.Bundle
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.utils.logError
 import com.hjonas.data.ApiManager
@@ -12,10 +13,19 @@ import java.io.IOException
 
 class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: String? = null) : CarAttributesContract.Presenter {
 
+    companion object {
+        private const val BUNDLE_EXTRA_DATA = "extra.data"
+    }
+
     private var disposable: Disposable? = null
+    private var attributesData: CarAttributes? = null
 
     override fun subscribe() {
-        fetchData()
+        if (attributesData == null) {
+            fetchData()
+        } else {
+            attributesData?.let { handleAttributesFetched(it) }
+        }
     }
 
     override fun unsubscribe() {
@@ -29,9 +39,11 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view.showLoading() }
                 .doFinally { view.hideLoading() }
-                .subscribe({ handleAttributesFetched(it) }, { handleFetchAttributesFail(it) })
+                .subscribe({
+                    attributesData = it
+                    handleAttributesFetched(it)
+                }, { handleFetchAttributesFail(it) })
     }
-
 
     private fun handleAttributesFetched(attributes: CarAttributes) {
         view.showVehicleInformation(attributes)
@@ -51,6 +63,16 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
             is IOException -> view.showConnectionProblemError()
             is HttpException -> view.showIncorrectResponseError(throwable.code())
             else -> view.showIncorrectResponseError(CarAttributesContract.CODE_UNKNOWN_ERROR)
+        }
+    }
+
+    override fun restoreInstanceState(bundle: Bundle) {
+        attributesData = bundle.getParcelable(BUNDLE_EXTRA_DATA)
+    }
+
+    override fun saveInstanceState(bundle: Bundle) {
+        attributesData?.let {
+            bundle.putParcelable(BUNDLE_EXTRA_DATA, it)
         }
     }
 }

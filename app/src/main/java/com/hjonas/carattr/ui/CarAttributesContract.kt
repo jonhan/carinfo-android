@@ -1,5 +1,6 @@
 package com.hjonas.carattr.ui
 
+import android.os.Bundle
 import com.hjonas.data.services.carattributes.model.CarAttributes
 import com.hjonas.data.services.carattributes.model.Emission
 import com.hjonas.data.services.carattributes.model.Fuel
@@ -24,5 +25,7 @@ interface CarAttributesContract {
         fun subscribe()
         fun unsubscribe()
         fun fetchData()
+        fun saveInstanceState(bundle: Bundle)
+        fun restoreInstanceState(bundle: Bundle)
     }
 }

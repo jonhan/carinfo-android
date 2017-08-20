@@ -76,4 +76,7 @@ object FuelTypes {
     const val Diesel = "diesel"
 }
 
-fun DrivingValues.hasValues() = (urban != null || mixed != null || rural != null)
+/**
+ * Returns true if this object has at least one child that is non-null, otherwise false
+ */
+fun DrivingValues.hasValues(): Boolean = (urban != null || mixed != null || rural != null)

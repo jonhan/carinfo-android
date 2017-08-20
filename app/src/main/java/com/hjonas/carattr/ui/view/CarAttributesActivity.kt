@@ -10,10 +10,7 @@ import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
 import com.hjonas.carattr.utils.setVisible
-import com.hjonas.data.services.carattributes.model.CarAttributes
-import com.hjonas.data.services.carattributes.model.DrivingValues
-import com.hjonas.data.services.carattributes.model.Emission
-import com.hjonas.data.services.carattributes.model.Fuel
+import com.hjonas.data.services.carattributes.model.*
 import kotlinx.android.synthetic.main.activity_car_attributes.*
 import kotlinx.android.synthetic.main.attribute_consumption_section.view.*
 import kotlinx.android.synthetic.main.car_attributes_contents.*
@@ -38,10 +35,16 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_attributes)
-        val vin = intent?.getStringExtra(INTENT_EXTRA_VIN)
-        presenter = CarAttributesPresenter(this, vin)
+
+        presenter = CarAttributesPresenter(this, intent?.getStringExtra(INTENT_EXTRA_VIN))
+
+        savedInstanceState?.let { presenter.restoreInstanceState(it) }
         configListeners()
         presenter.subscribe()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.let { presenter.saveInstanceState(it) }
     }
 
     private fun configListeners() {
@@ -97,6 +100,8 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     private fun addDrivingValuesSectionView(sectionTitle: String, drivingValues: DrivingValues, formatDrivingValue: (Double) -> String) {
+        if (!drivingValues.hasValues()) return
+
         val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_consumption_section, carAttributesContainerLayout, false)
         sectionView.sectionTitleTv.text = sectionTitle
         sectionView.apply {
