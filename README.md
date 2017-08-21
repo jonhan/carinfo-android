@@ -13,4 +13,4 @@ The app contains error handling for difference scenarios when fetching from back
 ### Further development and improvements
 * For an even more flexbile architecture, Dagger could be used to keep the instance of the presenters and manage other dependencies in an organized way.
 * Improve the UI with icons for the different attributes, make some attributes sections collapse/expandable if many more attributes is added to this screen.
-* Adding unit-tests
+* Adding unit-tests, specially for the `CarAttributesPresenter` class
