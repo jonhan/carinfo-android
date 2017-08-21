@@ -51,10 +51,8 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
     }
 
     private fun showFuelAndEmissionIfAvailable(attributes: CarAttributes) {
-        with(attributes) {
-            attributes.fuel?.let { view.showFuelInformation(it) }
-            attributes.emission?.let { view.showEmissionsInformation(it) }
-        }
+        attributes.fuel?.let { view.showFuelInformation(it) }
+        attributes.emission?.let { view.showEmissionsInformation(it) }
     }
 
     private fun handleFetchAttributesFail(throwable: Throwable) {
