@@ -59,23 +59,6 @@ data class DrivingValues(val urban: Double?
     }
 }
 
-object Brands {
-    const val Volvo = "volvo"
-    const val Ford = "ford"
-    const val Saab = "saab"
-    const val Rover = "rover"
-}
-
-object GearBoxType {
-    const val Manual = "manual"
-    const val Automatic = "automatic"
-}
-
-object FuelTypes {
-    const val Gasoline = "gasoline"
-    const val Diesel = "diesel"
-}
-
 /**
  * Returns true if this object has at least one child that is non-null, otherwise false
  */

@@ -21,5 +21,6 @@ fun View.setVisible(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }
 
+/** Returns a [Drawable] that will work for API < 21 as well, suitable e.g for getting vector drawables */
 fun Context.getDrawableCompat(@DrawableRes resId: Int) =
         AppCompatResources.getDrawable(this, resId)

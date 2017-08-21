@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
-import android.view.View
 import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.presenter.CarAttributesPresenter
@@ -14,7 +13,7 @@ import com.hjonas.carattr.utils.getDrawableCompat
 import com.hjonas.carattr.utils.setVisible
 import com.hjonas.data.services.carattributes.model.*
 import kotlinx.android.synthetic.main.activity_car_attributes.*
-import kotlinx.android.synthetic.main.attribute_consumption_section.view.*
+import kotlinx.android.synthetic.main.attribute_driving_values_section.view.*
 import kotlinx.android.synthetic.main.car_attributes_contents.*
 import kotlinx.android.synthetic.main.error_info.*
 
@@ -62,17 +61,18 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
     }
 
     override fun showLoading() {
-        loadingProgressBar.visibility = View.VISIBLE
+        loadingProgressBar.setVisible(true)
+        contentsLayout.setVisible(false)
     }
 
     override fun hideLoading() {
-        loadingProgressBar.visibility = View.GONE
+        loadingProgressBar.setVisible(false)
     }
 
     override fun showVehicleInformation(attributes: CarAttributes) {
         contentsLayout.setVisible(true)
         with(attributes) {
-            // Compound drawable must be set programmatically for vectors to work on API < 21
+            // Compound drawable must be set programmatically for vector drawables to work properly
             val icon = this@CarAttributesActivity.getDrawableCompat(R.drawable.ic_car)
             carDetailsHeaderTv.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null)
             carAttributeModelYearTv.text = "${brand.capitalize()} ($year)"
@@ -113,7 +113,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
                                             , formatDrivingValue: (Double) -> String) {
         if (!drivingValues.hasValues()) return
 
-        val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_consumption_section, carAttributesContainerLayout, false)
+        val sectionView = LayoutInflater.from(this).inflate(R.layout.attribute_driving_values_section, carAttributesContainerLayout, false)
         sectionView.apply {
             sectionTitleTv.text = sectionTitle
             val iconDrawable = this@CarAttributesActivity.getDrawableCompat(sectionIcon)

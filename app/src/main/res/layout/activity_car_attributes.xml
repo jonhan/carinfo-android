@@ -5,8 +5,7 @@
 
     <include
         android:id="@+id/contentsLayout"
-        layout="@layout/car_attributes_contents"
-        android:visibility="gone" />
+        layout="@layout/car_attributes_contents" />
 
     <include
         android:id="@+id/errorInfoLayout"
