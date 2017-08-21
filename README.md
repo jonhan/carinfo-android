@@ -1,7 +1,7 @@
 # Car info app for Android
 
 ### Scope
-This app fetches the attributes of a car from the backend API, at the moment it always fetches them from a hard-coded JSON-file, but in the future it can also fetch from a backend based on the vin-number. It's completely written in Kotlin.
+This app fetches the attributes of a car from the backend API and renders it in an `Activity`. At the moment it always fetches them from a hard-coded JSON-file, but in the future it can also fetch from backend based on the vin-number. It's completely written in Kotlin.
 
 The app is organized into two modules: 
 
