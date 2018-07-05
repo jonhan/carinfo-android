@@ -3,43 +3,46 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
 
-    defaultConfig {
-        applicationId "com.hjonas.carattr"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        vectorDrawables.useSupportLibrary = true
+  defaultConfig {
+    applicationId "com.hjonas.carattr"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    vectorDrawables.useSupportLibrary = true
+  }
+
+  buildTypes {
+    debug {
+      minifyEnabled false
     }
 
-    buildTypes {
-        debug {
-            minifyEnabled false
-        }
-
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    release {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
 }
 
 dependencies {
-    // Support lib
-    compile "com.android.support:appcompat-v7:$supportLibVersion"
-    compile "com.android.support:cardview-v7:$supportLibVersion"
-    compile "com.android.support:recyclerview-v7:$supportLibVersion"
+  // Support lib
+  compile "com.android.support:appcompat-v7:$supportLibVersion"
+  compile "com.android.support:cardview-v7:$supportLibVersion"
+  compile "com.android.support:recyclerview-v7:$supportLibVersion"
 
+  // Kotlin
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile project(':data')
 
-    compile project(':data')
+  // For testing
+  testCompile "junit:junit:$junitVersion"
+  testCompile "org.mockito:mockito-core:$mockitoVersion"
+  testCompile "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
 }
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
