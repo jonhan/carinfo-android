@@ -7,9 +7,8 @@ import com.hjonas.carattr.R
 import com.hjonas.carattr.ui.attributeslist.CarInfoItem
 
 class FuelConsumptionViewHolder(context: Context, parent: ViewGroup) :
-    ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_car_attributes, parent)) {
+    ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.attribute_driving_values_section, parent)) {
   override fun bind(data: CarInfoItem) {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
-
 }

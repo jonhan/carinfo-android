@@ -1,21 +1,22 @@
 <resources>
-    <string name="app_name">Car attributes</string>
-    <string name="details_car_header">Car information</string>
-    <string name="attribute_label_reg_nbr">Registration number</string>
-    <string name="attribute_label_fuel_type">Fuel type(s)</string>
-    <string name="attribute_label_gearbox_type">Gearbox type</string>
-    <string name="driving_condition_mixed">Mixed driving</string>
-    <string name="driving_condition_rural">Rural driving</string>
-    <string name="driving_condition_urban">Urban driving</string>
-    <string name="fuel_type_gasoline">Gasoline</string>
-    <string name="fuel_type_diesel">Diesel</string>
-    <string name="section_title_fuel">Fuel consumption, %1$s</string>
-    <string name="section_title_emissions">Emissions, %1$s</string>
-    <string name="consumption_liter_per_100_km">%1$.1f l/100km</string>
-    <string name="emissions_gram_per_km">%1$.1f g/km</string>
-    <!-- Error messages  -->
-    <string name="error_connection_problem">There was a problem connection to the server, check your internet connection and try again.</string>
-    <string name="error_incorrect_response">The server responded with an error, code: %1$d</string>
-    <string name="error_unknown">An unknown error occurred while loading data, please try again</string>
-    <string name="error_button_retry">Retry</string>
+  <string name="app_name">Car attributes</string>
+  <string name="details_car_header">Car information</string>
+  <string name="attribute_label_reg_nbr">Registration number</string>
+  <string name="attribute_label_fuel_type">Fuel type(s)</string>
+  <string name="attribute_label_gearbox_type">Gearbox type</string>
+  <string name="driving_condition_mixed">Mixed driving</string>
+  <string name="driving_condition_rural">Rural driving</string>
+  <string name="driving_condition_urban">Urban driving</string>
+  <string name="fuel_type_gasoline">Gasoline</string>
+  <string name="fuel_type_diesel">Diesel</string>
+  <string name="section_title_fuel">Fuel consumption, %1$s</string>
+  <string name="section_title_emissions">Emissions, %1$s</string>
+  <string name="consumption_liter_per_100_km">%1$.1f l/100km</string>
+  <string name="emissions_gram_per_km">%1$.1f g/km</string>
+  <string name="car_info_model_year">%1$s (%2$s)</string>
+  <!-- Error messages  -->
+  <string name="error_connection_problem">There was a problem connection to the server, check your internet connection and try again.</string>
+  <string name="error_incorrect_response">The server responded with an error, code: %1$d</string>
+  <string name="error_unknown">An unknown error occurred while loading data, please try again</string>
+  <string name="error_button_retry">Retry</string>
 </resources>
