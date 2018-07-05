@@ -5,9 +5,9 @@ import com.hjonas.data.ApiManager
 
 class CarAttrApp : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+  override fun onCreate() {
+    super.onCreate()
 
-        ApiManager.debuggable = BuildConfig.DEBUG
-    }
+    ApiManager.debuggable = BuildConfig.DEBUG
+  }
 }
