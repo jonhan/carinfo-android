@@ -57,7 +57,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
 
   override fun showLoading() {
     loadingProgressBar.setVisible(true)
-    contentsLayout.setVisible(false)
+//    contentsLayout.setVisible(false)
   }
 
   override fun hideLoading() {
@@ -65,7 +65,7 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
   }
 
   override fun showVehicleInformation(attributes: CarAttributes) {
-    contentsLayout.setVisible(true)
+//    contentsLayout.setVisible(true)
     with(attributes) {
       // Compound drawable must be set programmatically for vector drawables to work properly
       val icon = this@CarAttributesActivity.getDrawableCompat(R.drawable.ic_car)
@@ -134,14 +134,14 @@ class CarAttributesActivity : AppCompatActivity(), CarAttributesContract.View {
   }
 
   override fun showConnectionProblemError() {
-    contentsLayout.setVisible(false)
+//    contentsLayout.setVisible(false)
     errorInfoLayout.setVisible(true)
     errorInfoIcon.setImageResource(R.drawable.ic_cloud_off)
     errorInfoMessageTv.text = getString(R.string.error_connection_problem)
   }
 
   override fun showIncorrectResponseError(code: Int) {
-    contentsLayout.setVisible(false)
+//    contentsLayout.setVisible(false)
     errorInfoLayout.setVisible(true)
     errorInfoIcon.setImageResource(R.drawable.ic_error)
     errorInfoMessageTv.text = if (code == CarAttributesContract.CODE_UNKNOWN_ERROR) {
