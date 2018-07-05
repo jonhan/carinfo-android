@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
+  <TextView
+      android:id="@+id/sectionTitleTv"
+      style="@style/SectionHeader"
+      android:layout_marginBottom="4dp"
+      android:layout_marginStart="@dimen/attribute_row_side_margin"
+      android:layout_marginTop="4dp"
+      tools:text="Emissions"
+      />
+
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/white"
+      card_view:cardElevation="2dp"
+      card_view:cardUseCompatPadding="true"
+      card_view:contentPadding="@dimen/attribute_list_padding"
+      >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <TextView
+          android:id="@+id/drivingConditionMixedLabel"
+          style="@style/AttributeRowLabel"
+          android:text="@string/driving_condition_mixed"
+          android:visibility="gone"
+          />
+
+      <TextView
+          android:id="@+id/drivingConditionMixedTv"
+          style="@style/AttributeRowValue"
+          android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
+          android:visibility="gone"
+          tools:text="8.60 l/100 km"
+          />
+
+      <TextView
+          android:id="@+id/drivingConditionRuralLabel"
+          style="@style/AttributeRowLabel"
+          android:text="@string/driving_condition_rural"
+          android:visibility="gone"
+          />
+
+      <TextView
+          android:id="@+id/drivingConditionRuralTv"
+          style="@style/AttributeRowValue"
+          android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
+          android:visibility="gone"
+          tools:text="5.10 l/100 km"
+          />
+
+      <TextView
+          android:id="@+id/drivingConditionUrbanLabel"
+          style="@style/AttributeRowLabel"
+          android:text="@string/driving_condition_urban"
+          android:visibility="gone"
+          />
+
+      <TextView
+          android:id="@+id/drivingConditionUrbanTv"
+          style="@style/AttributeRowValue"
+          android:visibility="gone"
+          tools:text="9.40 l/100 km"
+          />
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -3,7 +3,7 @@ package com.hjonas.carattr.ui.presenter
 import com.hjonas.carattr.ui.CarAttributesContract
 import com.hjonas.carattr.ui.attributeslist.AttributeSectionsProvider
 import com.hjonas.carattr.utils.logError
-import com.hjonas.data.ApiManager
+import com.hjonas.data.services.carattributes.CarAttributesService
 import com.hjonas.data.services.carattributes.model.CarAttributes
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -14,7 +14,8 @@ import java.io.IOException
 // sectionsProvider can be injected through DI
 class CarAttributesPresenter(val view: CarAttributesContract.View,
                              val vin: String? = null,
-                             private val sectionsProvider: AttributeSectionsProvider) : CarAttributesContract.Presenter {
+                             private val sectionsProvider: AttributeSectionsProvider,
+                             private val api: CarAttributesService) : CarAttributesContract.Presenter {
 
   companion object {
     private const val BUNDLE_EXTRA_DATA = "extra.data"
@@ -38,7 +39,7 @@ class CarAttributesPresenter(val view: CarAttributesContract.View,
 
   override fun fetchData() {
     //TODO: Use the vin-field to fetch attributes for a specific car once an API supporting this is available.
-    disposable = ApiManager.carAttributesService.fetchCarAttributes()
+    disposable = api.fetchCarAttributes()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { view.showLoading() }

@@ -5,15 +5,17 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
+
   <TextView
       android:id="@+id/carDetailsHeaderTv"
       style="@style/SectionHeader"
       android:layout_marginBottom="4dp"
       android:layout_marginStart="@dimen/attribute_row_side_margin"
       android:layout_marginTop="4dp"
-      android:text="@string/details_car_header" />
+      android:text="@string/details_car_header"
+      />
 
   <android.support.v7.widget.CardView
       android:layout_width="match_parent"
@@ -21,12 +23,14 @@
       android:background="@android:color/white"
       card_view:cardElevation="2dp"
       card_view:cardUseCompatPadding="true"
-      card_view:contentPadding="@dimen/attribute_list_padding">
+      card_view:contentPadding="@dimen/attribute_list_padding"
+      >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
       <TextView
           android:id="@+id/carAttributeModelYearTv"
@@ -35,38 +39,45 @@
           android:layout_height="wrap_content"
           android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
           android:textStyle="bold"
-          tools:text="Ford (2009)" />
+          tools:text="Ford (2009)"
+          />
 
       <TextView
           style="@style/AttributeRowLabel"
-          android:text="@string/attribute_label_reg_nbr" />
+          android:text="@string/attribute_label_reg_nbr"
+          />
 
       <TextView
           android:id="@+id/carAttributeRegNbrTv"
           style="@style/AttributeRowValue"
           android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
           android:textAllCaps="true"
-          tools:text="RAX123" />
+          tools:text="RAX123"
+          />
 
       <TextView
           style="@style/AttributeRowLabel"
-          android:text="@string/attribute_label_gearbox_type" />
+          android:text="@string/attribute_label_gearbox_type"
+          />
 
       <TextView
           android:id="@+id/carAttributeGearboxTv"
           style="@style/AttributeRowValue"
           android:layout_marginBottom="@dimen/attribute_row_bottom_margin"
-          tools:text="Automatic" />
+          tools:text="Automatic"
+          />
 
       <TextView
           android:id="@+id/carAttributeFueltypeLabel"
           style="@style/AttributeRowLabel"
-          android:text="@string/attribute_label_fuel_type" />
+          android:text="@string/attribute_label_fuel_type"
+          />
 
       <TextView
           android:id="@+id/carAttributeFuelTypeTv"
           style="@style/AttributeRowValue"
-          tools:text="Gasoline" />
+          tools:text="Gasoline"
+          />
     </LinearLayout>
   </android.support.v7.widget.CardView>
 </LinearLayout>
