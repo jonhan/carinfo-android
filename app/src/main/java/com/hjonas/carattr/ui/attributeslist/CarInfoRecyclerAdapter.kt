@@ -11,11 +11,12 @@ import com.hjonas.carattr.ui.attributeslist.viewholder.ViewHolderFactory
  * Create factory that produce list of items based on network response
  * Inject viewHolder factory that creates viewHolders per type
  */
+// Factory could be injected through some DI framework
 class CarInfoRecyclerAdapter(private val factory: ViewHolderFactory) : RecyclerView.Adapter<ItemViewHolder>() {
 
-  private var items = listOf<CarInfoItem>()
+  private var items = listOf<CarAttributeItem>()
 
-  fun setItems(items: List<CarInfoItem>) {
+  fun setItems(items: List<CarAttributeItem>) {
     this.items = items
     notifyDataSetChanged()
   }
@@ -24,6 +25,8 @@ class CarInfoRecyclerAdapter(private val factory: ViewHolderFactory) : RecyclerV
     val type = AttributeSectionType.values()[viewType]
     return factory.createViewHolder(type, parent)
   }
+
+  override fun getItemViewType(position: Int): Int = items[position].sectionType.ordinal
 
   override fun getItemCount(): Int = items.size
 

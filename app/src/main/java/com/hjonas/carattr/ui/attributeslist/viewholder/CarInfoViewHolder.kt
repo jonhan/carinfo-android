@@ -4,12 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hjonas.carattr.R
-import com.hjonas.carattr.ui.attributeslist.CarInfoItem
+import com.hjonas.carattr.ui.attributeslist.CarAttributeItem
 import com.hjonas.carattr.utils.getDrawableCompat
 import kotlinx.android.synthetic.main.info_item_car.view.*
 
 class CarInfoViewHolder(context: Context, parent: ViewGroup) :
-    ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.info_item_car, parent)) {
+    ItemViewHolder(LayoutInflater.from(context).inflate(R.layout.info_item_car, parent, false)) {
 
   private val headerTv = itemView.carDetailsHeaderTv
   private val modelYearTv = itemView.carAttributeModelYearTv
@@ -17,7 +17,7 @@ class CarInfoViewHolder(context: Context, parent: ViewGroup) :
   private val gearBoxTv = itemView.carAttributeGearboxTv
   private val fuelTypeTv = itemView.carAttributeFuelTypeTv
 
-  override fun bind(data: CarInfoItem) {
+  override fun bind(data: CarAttributeItem) {
     val icon = itemView.context.getDrawableCompat(R.drawable.ic_car)
     headerTv.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null)
 

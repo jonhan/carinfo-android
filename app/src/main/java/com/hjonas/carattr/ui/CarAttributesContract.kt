@@ -1,8 +1,6 @@
 package com.hjonas.carattr.ui
 
-import com.hjonas.data.services.carattributes.model.CarAttributes
-import com.hjonas.data.services.carattributes.model.Emission
-import com.hjonas.data.services.carattributes.model.Fuel
+import com.hjonas.carattr.ui.attributeslist.CarAttributeItem
 
 interface CarAttributesContract {
 
@@ -15,9 +13,7 @@ interface CarAttributesContract {
     fun hideLoading()
     fun showConnectionProblemError()
     fun showIncorrectResponseError(code: Int)
-    fun showVehicleInformation(attributes: CarAttributes)
-    fun showFuelInformation(fuel: Fuel)
-    fun showEmissionsInformation(emission: Emission)
+    fun showAttributeSections(sections: List<CarAttributeItem>)
   }
 
   interface Presenter {

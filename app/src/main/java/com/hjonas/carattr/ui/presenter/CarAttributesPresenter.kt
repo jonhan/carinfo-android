@@ -1,6 +1,7 @@
 package com.hjonas.carattr.ui.presenter
 
 import com.hjonas.carattr.ui.CarAttributesContract
+import com.hjonas.carattr.ui.attributeslist.AttributeSectionsProvider
 import com.hjonas.carattr.utils.logError
 import com.hjonas.data.ApiManager
 import com.hjonas.data.services.carattributes.model.CarAttributes
@@ -10,7 +11,10 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import java.io.IOException
 
-class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: String? = null) : CarAttributesContract.Presenter {
+// sectionsProvider can be injected through DI
+class CarAttributesPresenter(val view: CarAttributesContract.View,
+                             val vin: String? = null,
+                             private val sectionsProvider: AttributeSectionsProvider) : CarAttributesContract.Presenter {
 
   companion object {
     private const val BUNDLE_EXTRA_DATA = "extra.data"
@@ -46,13 +50,8 @@ class CarAttributesPresenter(val view: CarAttributesContract.View, val vin: Stri
   }
 
   private fun handleAttributesFetched(attributes: CarAttributes) {
-    view.showVehicleInformation(attributes)
-    showFuelAndEmissionIfAvailable(attributes)
-  }
-
-  private fun showFuelAndEmissionIfAvailable(attributes: CarAttributes) {
-    attributes.fuel?.let { view.showFuelInformation(it) }
-    attributes.emission?.let { view.showEmissionsInformation(it) }
+    val sections = sectionsProvider.getSections(attributes)
+    view.showAttributeSections(sections)
   }
 
   private fun handleFetchAttributesFail(throwable: Throwable) {
