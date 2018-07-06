@@ -5,12 +5,6 @@ import android.view.ViewGroup
 import com.hjonas.carattr.ui.attributeslist.viewholder.ItemViewHolder
 import com.hjonas.carattr.ui.attributeslist.viewholder.ViewHolderFactory
 
-/**
- * Define a data-item that contains type and data
- * Expose a setter for list of items
- * Create factory that produce list of items based on network response
- * Inject viewHolder factory that creates viewHolders per type
- */
 // Factory could be injected through some DI framework
 class CarInfoRecyclerAdapter(private val factory: ViewHolderFactory) : RecyclerView.Adapter<ItemViewHolder>() {
 
