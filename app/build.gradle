@@ -27,6 +27,12 @@ android {
   }
 }
 
+configurations.all {
+  resolutionStrategy {
+    force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  }
+}
+
 dependencies {
   // Support lib
   compile "com.android.support:appcompat-v7:$supportLibVersion"
